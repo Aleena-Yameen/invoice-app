@@ -51,25 +51,45 @@
 
         function displayInvoices() {
 
-            const list =
-                document.getElementById("list");
+    const list =
+        document.getElementById("list");
 
-            list.innerHTML = "";
+    list.innerHTML = "";
 
-            invoices.forEach(function(invoice) {
+    invoices.forEach(function(invoice, index) {
 
-                const item =
-                    document.createElement("li");
+        const item =
+            document.createElement("li");
 
-                item.textContent =
-                    invoice.customer +
-                    " - $" +
-                    invoice.amount;
+        item.textContent =
+            invoice.customer +
+            " - $" +
+            invoice.amount +
+            " ";
 
-                list.appendChild(item);
+        const deleteButton =
+            document.createElement("button");
 
-            });
-        }
+        deleteButton.textContent = "Delete";
+
+        deleteButton.onclick = function() {
+
+            invoices.splice(index, 1);
+
+            localStorage.setItem(
+                "invoices",
+                JSON.stringify(invoices)
+            );
+
+            displayInvoices();
+        };
+
+        item.appendChild(deleteButton);
+
+        list.appendChild(item);
+
+    });
+}
 
     </script>
 
