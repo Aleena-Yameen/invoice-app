@@ -8,7 +8,8 @@
     <h1>Invoice Reminder System</h1>
 
     <input id="customer" placeholder="Customer Name">
-    <input id="amount" placeholder="Amount">
+<input id="amount" placeholder="Amount">
+<input id="dueDate" type="date">
 
     <button onclick="addInvoice()">
         Add Invoice
@@ -31,11 +32,14 @@
             const amount =
                 document.getElementById("amount").value;
 
-            const invoice = {
-                customer: customer,
-                amount: amount
-            };
+            const dueDate =
+    document.getElementById("dueDate").value;
 
+            const invoice = {
+    customer: customer,
+    amount: amount,
+    dueDate: dueDate
+};
             invoices.push(invoice);
 
             localStorage.setItem(
@@ -47,6 +51,7 @@
 
             document.getElementById("customer").value = "";
             document.getElementById("amount").value = "";
+            document.getElementById("dueDate").value = "";
         }
 
         function displayInvoices() {
@@ -62,10 +67,12 @@
             document.createElement("li");
 
         item.textContent =
-            invoice.customer +
-            " - $" +
-            invoice.amount +
-            " ";
+    invoice.customer +
+    " - $" +
+    invoice.amount +
+    " - Due: " +
+    invoice.dueDate +
+    " ";
 
         const deleteButton =
             document.createElement("button");
