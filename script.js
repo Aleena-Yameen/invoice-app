@@ -38,6 +38,32 @@ function addInvoice(){
 
     displayInvoices();
 }
+function updateStats(){
+
+    document.getElementById("totalInvoices").textContent =
+        invoices.length;
+
+    let totalAmount = 0;
+    let overdueCount = 0;
+
+    invoices.forEach(function(invoice){
+
+        totalAmount += Number(invoice.amount);
+
+        const today = new Date();
+        const due = new Date(invoice.dueDate);
+
+        if(due < today){
+            overdueCount++;
+        }
+    });
+
+    document.getElementById("totalAmount").textContent =
+        "$" + totalAmount;
+
+    document.getElementById("overdueInvoices").textContent =
+        overdueCount;
+}
 
 function displayInvoices(){
 
@@ -45,6 +71,7 @@ function displayInvoices(){
         document.getElementById("list");
 
     list.innerHTML = "";
+    updateStats();
 
     if(invoices.length === 0){
         list.innerHTML =
