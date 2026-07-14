@@ -1,104 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Invoice App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Reminder System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Invoice Reminder System</h1>
+    <div class="container">
 
-    <input id="customer" placeholder="Customer Name">
-<input id="amount" placeholder="Amount">
-<input id="dueDate" type="date">
+        <h1>💼 Invoice Reminder System</h1>
 
-    <button onclick="addInvoice()">
-        Add Invoice
-    </button>
+        <div class="form-group">
+            <input id="customer" placeholder="Customer Name">
 
-    <ul id="list"></ul>
+            <input id="amount" type="number" placeholder="Invoice Amount">
 
-    <script>
+            <input id="dueDate" type="date">
 
-        let invoices =
-            JSON.parse(localStorage.getItem("invoices")) || [];
+            <button class="add-btn" onclick="addInvoice()">
+                Add Invoice
+            </button>
+        </div>
 
-        displayInvoices();
+        <div class="invoice-list" id="list"></div>
 
-        function addInvoice() {
+    </div>
 
-            const customer =
-                document.getElementById("customer").value;
-
-            const amount =
-                document.getElementById("amount").value;
-
-            const dueDate =
-    document.getElementById("dueDate").value;
-
-            const invoice = {
-    customer: customer,
-    amount: amount,
-    dueDate: dueDate
-};
-            invoices.push(invoice);
-
-            localStorage.setItem(
-                "invoices",
-                JSON.stringify(invoices)
-            );
-
-            displayInvoices();
-
-            document.getElementById("customer").value = "";
-            document.getElementById("amount").value = "";
-            document.getElementById("dueDate").value = "";
-        }
-
-        function displayInvoices() {
-
-    const list =
-        document.getElementById("list");
-
-    list.innerHTML = "";
-
-    invoices.forEach(function(invoice, index) {
-
-        const item =
-            document.createElement("li");
-
-        item.textContent =
-    invoice.customer +
-    " - $" +
-    invoice.amount +
-    " - Due: " +
-    invoice.dueDate +
-    " ";
-
-        const deleteButton =
-            document.createElement("button");
-
-        deleteButton.textContent = "Delete";
-
-        deleteButton.onclick = function() {
-
-            invoices.splice(index, 1);
-
-            localStorage.setItem(
-                "invoices",
-                JSON.stringify(invoices)
-            );
-
-            displayInvoices();
-        };
-
-        item.appendChild(deleteButton);
-
-        list.appendChild(item);
-
-    });
-}
-
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>

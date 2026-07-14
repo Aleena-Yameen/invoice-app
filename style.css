@@ -1,0 +1,123 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:700px;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:25px;
+    color:#333;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+input{
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#667eea;
+}
+
+.add-btn{
+    background:#667eea;
+    color:white;
+    border:none;
+    padding:14px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.add-btn:hover{
+    opacity:0.9;
+}
+
+.invoice-list{
+    margin-top:25px;
+}
+
+.invoice-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#f8f9ff;
+    padding:15px;
+    margin-bottom:12px;
+    border-radius:12px;
+    border-left:5px solid #667eea;
+}
+
+.invoice-info{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.customer{
+    font-weight:bold;
+    color:#222;
+}
+
+.amount{
+    color:green;
+    font-weight:bold;
+}
+
+.due{
+    color:#555;
+    font-size:14px;
+}
+
+.overdue{
+    color:red;
+    font-weight:bold;
+}
+
+.delete-btn{
+    background:#ff4d4d;
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.delete-btn:hover{
+    background:#e60000;
+}
+
+.empty{
+    text-align:center;
+    color:#777;
+    margin-top:20px;
+}
