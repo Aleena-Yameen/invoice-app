@@ -4,32 +4,74 @@
     <title>Invoice App</title>
 </head>
 <body>
+
     <h1>Invoice Reminder System</h1>
 
     <input id="customer" placeholder="Customer Name">
     <input id="amount" placeholder="Amount">
 
-    <button onclick="addInvoice()">Add Invoice</button>
+    <button onclick="addInvoice()">
+        Add Invoice
+    </button>
 
     <ul id="list"></ul>
 
     <script>
+
+        let invoices =
+            JSON.parse(localStorage.getItem("invoices")) || [];
+
+        displayInvoices();
+
         function addInvoice() {
+
             const customer =
                 document.getElementById("customer").value;
 
             const amount =
                 document.getElementById("amount").value;
 
-            const item =
-                document.createElement("li");
+            const invoice = {
+                customer: customer,
+                amount: amount
+            };
 
-            item.textContent =
-                customer + " - $" + amount;
+            invoices.push(invoice);
 
-            document
-                .getElementById("list")
-                .appendChild(item);
+            localStorage.setItem(
+                "invoices",
+                JSON.stringify(invoices)
+            );
+
+            displayInvoices();
+
+            document.getElementById("customer").value = "";
+            document.getElementById("amount").value = "";
         }
+
+        function displayInvoices() {
+
+            const list =
+                document.getElementById("list");
+
+            list.innerHTML = "";
+
+            invoices.forEach(function(invoice) {
+
+                const item =
+                    document.createElement("li");
+
+                item.textContent =
+                    invoice.customer +
+                    " - $" +
+                    invoice.amount;
+
+                list.appendChild(item);
+
+            });
+        }
+
     </script>
+
+</body>
 </html>
